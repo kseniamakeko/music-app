@@ -1,0 +1,33 @@
+.itemCard {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: auto;
+  text-align: justify;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 10px;
+}
+
+.itemCard img {
+  width: 300px;
+  height: auto;
+}
+
+.item-details {
+  padding: 15px;
+}
+
+.item-details span {
+  font-size: 1.2em;
+  margin: 0 0 10px 0;
+}
+
+.item-details p {
+  color: #777;
+  margin: 0;
+}
+
+.item-card__above {
+  margin: 40px;
+}
