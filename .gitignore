@@ -53,6 +53,4 @@ bower_components/
 *.sqlite
 *.sqlite3
 
-# Logs and databases from sequelize-cli
-migrations/
-seeders/
+nohup.out
