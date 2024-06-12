@@ -6,6 +6,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -14,12 +15,12 @@ const pool = mysql.createPool({
 });
 
 app.post("/albums", (req, res) => {
-  const { name, authorName, createdAt, description } = req.body;
+  const { name, authorName, createdAt, description, image_url } = req.body;
   const query =
-    "INSERT INTO Album (name, authorName, createdAt, description) VALUES (?, ?, ?, ?)";
+    "INSERT INTO Album (name, authorName, createdAt, description, image_url) VALUES (?, ?, ?, ?, ?)";
   pool.query(
     query,
-    [name, authorName, createdAt, description],
+    [name, authorName, createdAt, description, image_url],
     (error, results) => {
       if (error) {
         return res.status(500).json({ error: error.message });
@@ -29,7 +30,8 @@ app.post("/albums", (req, res) => {
         name,
         authorName,
         createdAt,
-        description
+        description,
+        image_url
       });
     }
   );
@@ -37,7 +39,7 @@ app.post("/albums", (req, res) => {
 
 app.get("/albums", (req, res) => {
   const query =
-    "SELECT id, name, authorName, createdAt, description FROM Album";
+    "SELECT id, name, authorName, createdAt, description, image_url FROM Album";
   pool.query(query, (error, results) => {
     if (error) {
       return res.status(500).json({ error: error.message });
