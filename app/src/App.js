@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import CardItem from "./component/cardItem";
 
@@ -11,7 +12,7 @@ function App() {
       author: "Metallica",
       date: new Date(1986, 3, 3),
       preview:
-        "Master of Puppets is the third studio album by the American heavy metal band Metallica...",
+        "Master of Puppets is the third studio album by the American heavy metal band Metallica..."
     },
     {
       id: "e2",
@@ -21,8 +22,8 @@ function App() {
       author: "Placebo",
       date: new Date(2006, 3, 13),
       preview:
-        "Meds is the fifth studio album by British alternative rock band Placebo.",
-    },
+        "Meds is the fifth studio album by British alternative rock band Placebo."
+    }
   ];
   return (
     <div>
