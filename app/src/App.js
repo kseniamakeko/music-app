@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import CardItem from "./component/cardItem";
+import Search from "./component/Search";
 
 function App() {
   const cards = [
@@ -30,7 +31,7 @@ function App() {
       author: "Linkin Park",
       date: new Date(2003, 3, 25),
       preview:
-        "Meteora is the second studio album by American rock band Linkin Park. It was released on March 25, 2003, through Warner Bros. Records..."
+        "Meteora is the second studio album by American rock band Linkin Park."
     }
   ];
   return (
