@@ -16,13 +16,21 @@ function App() {
     },
     {
       id: "e2",
-      image:
-        "https://www.revolvermag.com/sites/default/files/styles/original_image__844px_x_473px_/public/media/section-media/master_cover.jpg?itok=L1JgJGah&timestamp=1508341064",
+      image: "https://m.media-amazon.com/images/I/61jCxw4EKbL._SL1000_.jpg",
       title: "Meds",
       author: "Placebo",
       date: new Date(2006, 3, 13),
       preview:
         "Meds is the fifth studio album by British alternative rock band Placebo."
+    },
+    {
+      id: "e3",
+      image: "https://i.ebayimg.com/images/g/z28AAOSwnQRiEPTH/s-l1600.webp",
+      title: "Meteora",
+      author: "Linkin Park",
+      date: new Date(2003, 3, 25),
+      preview:
+        "Meteora is the second studio album by American rock band Linkin Park. It was released on March 25, 2003, through Warner Bros. Records..."
     }
   ];
   return (
@@ -42,6 +50,14 @@ function App() {
         author={cards[1].author}
         date={cards[1].date}
         preview={cards[1].preview}
+      />
+      <CardItem
+        key={cards[2].id}
+        image={cards[2].image}
+        title={cards[2].title}
+        author={cards[2].author}
+        date={cards[2].date}
+        preview={cards[2].preview}
       />
     </div>
   );

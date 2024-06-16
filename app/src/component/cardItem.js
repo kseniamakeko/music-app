@@ -11,7 +11,7 @@ function CardItem(props) {
       <div className="item-details">
         <h3>{title}</h3>
         <p>{author}</p>
-        <div>{year}</div>
+        <div className="item-year">{year}</div>
         <p>{preview}</p>
       </div>
     </div>
