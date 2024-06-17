@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import CardItem from "./component/cardItem";
 import Search from "./component/Search";
+import Result from "./component/Result";
 
 function App() {
   const cards = [
@@ -34,33 +35,57 @@ function App() {
         "Meteora is the second studio album by American rock band Linkin Park."
     }
   ];
+
+  const [searchResults, setSearchResults] = useState(cards);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearch = async (query) => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5000/albums");
+      if (!res.ok) {
+        throw new Error("it is impossible to connect! Check your Network");
+      }
+      const data = await res.json();
+      setSearchResults(data.results);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
-      <CardItem
-        key={cards[0].id}
-        image={cards[0].image}
-        title={cards[0].title}
-        author={cards[0].author}
-        date={cards[0].date}
-        preview={cards[0].preview}
-      />
-      <CardItem
-        key={cards[1].id}
-        image={cards[1].image}
-        title={cards[1].title}
-        author={cards[1].author}
-        date={cards[1].date}
-        preview={cards[1].preview}
-      />
-      <CardItem
-        key={cards[2].id}
-        image={cards[2].image}
-        title={cards[2].title}
-        author={cards[2].author}
-        date={cards[2].date}
-        preview={cards[2].preview}
-      />
+      <Search onSearch={handleSearch} />
+      {loading ? <p>Loading...</p> : <Result results={searchResults} />}
     </div>
+    // <div>
+    //   <CardItem
+    //     key={cards[0].id}
+    //     image={cards[0].image}
+    //     title={cards[0].title}
+    //     author={cards[0].author}
+    //     date={cards[0].date}
+    //     preview={cards[0].preview}
+    //   />
+    //   <CardItem
+    //     key={cards[1].id}
+    //     image={cards[1].image}
+    //     title={cards[1].title}
+    //     author={cards[1].author}
+    //     date={cards[1].date}
+    //     preview={cards[1].preview}
+    //   />
+    //   <CardItem
+    //     key={cards[2].id}
+    //     image={cards[2].image}
+    //     title={cards[2].title}
+    //     author={cards[2].author}
+    //     date={cards[2].date}
+    //     preview={cards[2].preview}
+    //   />
+    // </div>
   );
 }
 
