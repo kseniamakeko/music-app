@@ -2,7 +2,7 @@ import React from "react";
 import "./Result.css";
 import CardItem from "./cardItem";
 
-const Result = ({ results }) => {
+const SearchResult = ({ results }) => {
   return (
     <div className="result">
       {results.map((card) => (
@@ -21,4 +21,4 @@ const Result = ({ results }) => {
   );
 };
 
-export default Result;
+export default SearchResult;
