@@ -2,17 +2,17 @@ import React from "react";
 import "./cardItem.css";
 
 const CardItem = (props) => {
-  const { image, title, author, date, preview } = props;
-  const year = date.getFullYear();
+  const { image_url, name, authorName, createdAt, description } = props;
+  const year = new Date(createdAt).getFullYear();
 
   return (
     <div className="itemCard">
-      <img src={image} />
+      {image_url && <img src={`http://localhost:5000/${image_url}`} />}
       <div className="item-details">
-        <h3>{title}</h3>
-        <div className="item-details-subtitle">{author}</div>
+        <h3>{name}</h3>
+        <div className="item-details-subtitle">{authorName}</div>
         <div className="item-year">{year}</div>
-        <p>{preview}</p>
+        <p>{description}</p>
       </div>
     </div>
   );

@@ -2,18 +2,18 @@ import React from "react";
 import "./Result.css";
 import CardItem from "./cardItem";
 
-const SearchResult = ({ results }) => {
+const Result = ({ results }) => {
   return (
     <div className="result">
       {results.map((card) => (
         <div className="result-item" key={card.id}>
           <CardItem
             key={card.id}
-            image={card.image}
-            title={card.title}
-            author={card.author}
-            date={card.date}
-            preview={card.preview}
+            image_url={card.image_url}
+            name={card.name}
+            authorName={card.authorName}
+            createdAt={card.createdAt}
+            description={card.description}
           />
         </div>
       ))}
@@ -21,4 +21,4 @@ const SearchResult = ({ results }) => {
   );
 };
 
-export default SearchResult;
+export default Result;
