@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Search.css";
+import classes from "./Search.module.css";
 
 const Search = ({ onSearch }) => {
   const [query, setQuery] = useState("");
@@ -12,7 +12,7 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div className="search">
+    <div className={classes.search}>
       <input
         type="text"
         value={query}

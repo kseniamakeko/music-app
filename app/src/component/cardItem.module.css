@@ -19,38 +19,38 @@
   margin-left: 25px;
 }
 
-.item-details {
+.item_details {
   padding: 15px;
   flex-grow: 1;
 }
 
-.item-details span {
+.item_details span {
   font-size: 1.3em;
   margin: 0 0 8px 0;
 }
 
-.item-details-subtitle {
+.item_details_subtitle {
   color: #2e2929;
   font-weight: 600;
   margin: 0px 0px 5px 0px;
   font-size: 0.9rem;
 }
 
-.item-details p {
+.item_details p {
   color: #2e2929;
   font-weight: 500;
   margin: 0px 0px 5px 0px;
   font-size: 14px;
 }
 
-.item-year {
+.item_year {
   font-size: 14px;
   font-weight: 400;
   color: #494646;
   margin: 0px 0px 5px 0px;
 }
 
-.item-details h3 {
+.item_details h3 {
   font-size: 20px;
   font-weight: 700;
   margin: 0px 0px 10px 0px;
