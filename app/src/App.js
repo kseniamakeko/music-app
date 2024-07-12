@@ -1,77 +1,53 @@
 import React, { useEffect, useState } from "react";
-import classes from "./App.module.css";
 import Search from "./component/Search";
 import Result from "./component/Result";
-import CardItem from "./component/cardItem";
+import Loader from "./UI/loader";
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [showItem, setShowItem] = useState([]);
   const [searchResults, setSearchResults] = useState(cards);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const showItems = async () => {
+    const fetchItems = async () => {
       try {
         const res = await fetch("http://localhost:5000/albums");
         if (!res.ok) {
           throw new Error("it is impossible to connect! Check your Network");
         }
         const data = await res.json();
-        setShowItem(data);
+        setCards(data);
+        setSearchResults(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-    showItems();
+    fetchItems();
   }, []);
 
-  const addCardsHandler = (card) => {
-    setCards((prevCards) => {
-      return [card, ...prevCards];
-    });
-  };
-
-  const handleSearch = async (query) => {
-    setLoading(true);
-    try {
-      const res = await fetch("http://localhost:5000/albums");
-      if (!res.ok) {
-        throw new Error("it is impossible to connect! Check your Network");
-      }
-      const data = await res.json();
-      setSearchResults(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
+  const handleSearch = (inputSearch) => {
+    if (inputSearch === "") {
+      setSearchResults(cards);
+    } else {
+      const filteredResults = cards.filter((item) => {
+        const nameMatch = item.name
+          .toLowerCase()
+          .includes(inputSearch.toLowerCase());
+        const autnorNameMatch = item.authorName
+          .toLowerCase()
+          .includes(inputSearch.toLowerCase());
+        return nameMatch || autnorNameMatch;
+      });
+      setSearchResults(filteredResults);
     }
   };
 
   return (
     <div>
       <Search onSearch={handleSearch} />
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          {showItem.map((item, index) => (
-            <div key={index} className={classes.itemCard}>
-              <CardItem
-                key={item.id}
-                image_url={item.image_url}
-                name={item.name}
-                authorName={item.authorName}
-                createdAt={item.createdAt}
-                description={item.description}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      <Result results={searchResults} />
+      {loading ? <Loader /> : <Result results={searchResults} />}
     </div>
   );
 }

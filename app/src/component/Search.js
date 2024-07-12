@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import classes from "./Search.module.css";
+import Button from "../UI/Button";
 
 const Search = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
+  const [inputSearch, setInputSearch] = useState("");
 
-  const handleInputChange = (e) => {
-    const newQuery = e.target.value;
-    setQuery(newQuery);
-    onSearch(newQuery);
-    console.log(newQuery);
+  const handleChangeInputSearch = (event) => {
+    setInputSearch(event.target.value);
+  };
+
+  const handleButtonClick = () => {
+    onSearch(inputSearch);
+    setInputSearch("");
   };
 
   return (
     <div className={classes.search}>
       <input
         type="text"
-        value={query}
-        onChange={handleInputChange}
+        value={inputSearch}
+        onChange={handleChangeInputSearch}
         placeholder="Search for music..."
       />
-      <button onClick={() => onSearch(query)}>Search</button>
+      <Button onClick={handleButtonClick} />
     </div>
   );
 };
