@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Search.module.css";
-import Button from "./UI/Button";
 
 const Search = ({ onSearch }) => {
   const [inputSearch, setInputSearch] = useState("");
@@ -9,9 +8,9 @@ const Search = ({ onSearch }) => {
     setInputSearch(event.target.value);
   };
 
-  const handleButtonClick = () => {
+  useEffect(() => {
     onSearch(inputSearch);
-  };
+  }, [inputSearch]);
 
   return (
     <div className={classes.search}>
@@ -21,7 +20,6 @@ const Search = ({ onSearch }) => {
         onChange={handleChangeInputSearch}
         placeholder="Search for music..."
       />
-      <Button onClick={handleButtonClick} />
     </div>
   );
 };
