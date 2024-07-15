@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./cardItem.module.css";
+import classes from "./CardItem.module.css";
 
 const CardItem = (props) => {
   const { image_url, name, authorName, createdAt, description } = props;

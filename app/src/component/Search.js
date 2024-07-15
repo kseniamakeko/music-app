@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Search.module.css";
-import Button from "../UI/Button";
+import Button from "./UI/Button";
 
 const Search = ({ onSearch }) => {
   const [inputSearch, setInputSearch] = useState("");
@@ -11,7 +11,6 @@ const Search = ({ onSearch }) => {
 
   const handleButtonClick = () => {
     onSearch(inputSearch);
-    setInputSearch("");
   };
 
   return (

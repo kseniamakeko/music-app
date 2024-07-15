@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Search from "./component/Search";
-import Result from "./component/Result";
-import Loader from "./UI/loader";
+import Search from "./Component/Search";
+import Result from "./Component/Result";
+import Loader from "./Component/UI/Loader";
+// import AlbumCard from "./Component/AlbumCards/AlbumCard";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [searchResults, setSearchResults] = useState(cards);
   const [loading, setLoading] = useState(true);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -35,17 +37,23 @@ function App() {
         const nameMatch = item.name
           .toLowerCase()
           .includes(inputSearch.toLowerCase());
-        const autnorNameMatch = item.authorName
+        const authorNameMatch = item.authorName
           .toLowerCase()
           .includes(inputSearch.toLowerCase());
-        return nameMatch || autnorNameMatch;
+
+        return nameMatch || authorNameMatch;
       });
       setSearchResults(filteredResults);
     }
   };
 
+  const handlerCardClick = (albumCard) => {
+    setSelectedCard(albumCard);
+  };
+
   return (
     <div>
+      {/* {selectedCard ? <AlbumCard albumCard={selectedCard} /> : null} */}
       <Search onSearch={handleSearch} />
       {loading ? <Loader /> : <Result results={searchResults} />}
     </div>

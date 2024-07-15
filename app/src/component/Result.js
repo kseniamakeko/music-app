@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Result.module.css";
-import CardItem from "./cardItem";
+import CardItem from "./CardItem";
 
 const Result = ({ results }) => {
   return (
