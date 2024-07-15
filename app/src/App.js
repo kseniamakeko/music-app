@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Search from "./Component/Search";
 import Result from "./Component/Result";
 import Loader from "./Component/UI/Loader";
-// import AlbumCard from "./Component/AlbumCards/AlbumCard";
+import AlbumCard from "./Component/AlbumCards/AlbumCard";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -51,11 +51,24 @@ function App() {
     setSelectedCard(albumCard);
   };
 
+  const handleBackClick = () => {
+    setSelectedCard(null);
+  };
+
   return (
     <div>
-      {/* {selectedCard ? <AlbumCard albumCard={selectedCard} /> : null} */}
-      <Search onSearch={handleSearch} />
-      {loading ? <Loader /> : <Result results={searchResults} />}
+      {selectedCard ? (
+        <AlbumCard albumCard={selectedCard} onClick={handleBackClick} />
+      ) : (
+        <div>
+          <Search onSearch={handleSearch} />
+          {loading ? (
+            <Loader />
+          ) : (
+            <Result results={searchResults} onCardClick={handlerCardClick} />
+          )}
+        </div>
+      )}
     </div>
   );
 }

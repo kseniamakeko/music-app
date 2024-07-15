@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Result.module.css";
 import CardItem from "./CardItem";
 
-const Result = ({ results }) => {
+const Result = ({ results = [], onCardClick }) => {
   return (
     <div className={classes.result}>
       {results.length > 0 ? (
@@ -14,6 +14,7 @@ const Result = ({ results }) => {
             authorName={card.authorName}
             createdAt={card.createdAt}
             description={card.description}
+            onClick={() => onCardClick(card)}
           />
         ))
       ) : (

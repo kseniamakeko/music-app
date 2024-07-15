@@ -1,17 +1,17 @@
 import React from "react";
-// import classes from "./AlbumItems.module.css";
+import classes from "./AlbumItem.module.css";
 
-const AlbumItem = (props) => {
+const AlbumItem = (item) => {
   return (
-    <div>
-      <div className="">
-        <p>{props.number}</p>
+    <div className={classes.album_item}>
+      <div className={classes.number}>
+        <p>{item.number}</p>
       </div>
-      <div className="">
-        <p>{props.name}</p>
+      <div className={classes.name}>
+        <p>{item.name}</p>
       </div>
-      <div className="">
-        <p>{props.duration}</p>
+      <div className={classes.duration}>
+        <p>{item.duration}</p>
       </div>
     </div>
   );

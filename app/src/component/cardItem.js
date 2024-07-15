@@ -2,9 +2,10 @@ import React from "react";
 import classes from "./CardItem.module.css";
 
 const CardItem = (props) => {
-  const { image_url, name, authorName, createdAt, description } = props;
+  const { image_url, name, authorName, createdAt, description, onClick } =
+    props;
   return (
-    <div className={classes.itemCard}>
+    <div className={classes.itemCard} onClick={onClick}>
       {image_url && <img src={`http://localhost:5000/${image_url}`} />}
       <div className={classes.item_details}>
         <h3>{name}</h3>
