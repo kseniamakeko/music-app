@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Result.module.css";
 import CardItem from "./CardItem";
-
+// TODO: RENAME TO ALBUMLIST
 const Result = ({ results = [], onCardClick }) => {
   return (
     <div className={classes.result}>

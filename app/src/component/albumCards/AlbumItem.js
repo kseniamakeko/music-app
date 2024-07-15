@@ -5,7 +5,7 @@ const AlbumItem = (item) => {
   return (
     <div className={classes.album_item}>
       <div className={classes.number}>
-        <p>{item.number}</p>
+        <p>{item.albumId}</p>
       </div>
       <div className={classes.name}>
         <p>{item.name}</p>

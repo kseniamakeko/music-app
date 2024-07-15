@@ -8,8 +8,8 @@ const AlbumList = (props) => {
       {props.items.map((item) => (
         <AlbumItem
           key={item.id}
+          albumId={item.id}
           name={item.name}
-          number={item.number}
           duration={item.duration}
         />
       ))}

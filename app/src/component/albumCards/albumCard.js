@@ -1,6 +1,6 @@
 import React from "react";
 // import classes from "AlbumCard.module.css";
-import AlbumList from "./AlbumList";
+// import AlbumList from "./AlbumList";
 
 const AlbumCard = ({ albumCard, onClick }) => {
   return (
@@ -11,9 +11,9 @@ const AlbumCard = ({ albumCard, onClick }) => {
       <h4>{albumCard.authorName}</h4>
       <p>{albumCard.createdAt}</p>
       <p>{albumCard.description}</p>
-      <div>
+      {/* <div>
         <AlbumList />
-      </div>
+      </div> */}
     </div>
   );
 };

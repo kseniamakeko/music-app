@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./CardItem.module.css";
-
+//TODO: RENAME TO ALBUMITEM
 const CardItem = (props) => {
   const { image_url, name, authorName, createdAt, description, onClick } =
     props;
