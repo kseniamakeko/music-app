@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./CardItem.module.css";
-//TODO: RENAME TO ALBUMITEM
-const CardItem = (props) => {
+import classes from "./AlbumItem.module.css";
+
+const AlbumItem = (props) => {
   const { image_url, name, authorName, createdAt, description, onClick } =
     props;
   return (
@@ -19,4 +19,4 @@ const CardItem = (props) => {
   );
 };
 
-export default CardItem;
+export default AlbumItem;

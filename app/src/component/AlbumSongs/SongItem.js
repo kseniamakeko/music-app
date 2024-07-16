@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./AlbumItem.module.css";
+import classes from "./SongItem.module.css";
 
-const AlbumItem = (item) => {
+const SongItem = (item) => {
   return (
     <div className={classes.album_item}>
       <div className={classes.number}>
@@ -17,4 +17,4 @@ const AlbumItem = (item) => {
   );
 };
 
-export default AlbumItem;
+export default SongItem;

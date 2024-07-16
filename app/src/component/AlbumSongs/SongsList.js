@@ -1,12 +1,13 @@
 import React from "react";
-// import classes from "./AlbumList.module.css";
-import AlbumItem from "./AlbumItem";
+// import classes from "./SongsList.module.css";
 
-const AlbumList = (props) => {
+import SongItem from "./SongItem";
+
+const SongsList = (props) => {
   return (
     <ul className="">
       {props.items.map((item) => (
-        <AlbumItem
+        <SongItem
           key={item.id}
           albumId={item.id}
           name={item.name}
@@ -17,4 +18,4 @@ const AlbumList = (props) => {
   );
 };
 
-export default AlbumList;
+export default SongsList;
