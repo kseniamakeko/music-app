@@ -1,13 +1,13 @@
 import React from "react";
-import classes from "./Result.module.css";
-import CardItem from "./CardItem";
-// TODO: RENAME TO ALBUMLIST
-const Result = ({ results = [], onCardClick }) => {
+import classes from "./AlbumList.module.css";
+import AlbumItem from "./AlbumItem";
+
+const AlbumList = ({ results = [], onCardClick }) => {
   return (
     <div className={classes.result}>
       {results.length > 0 ? (
         results.map((card) => (
-          <CardItem
+          <AlbumItem
             key={card.id}
             image_url={card.image_url}
             name={card.name}
@@ -24,4 +24,4 @@ const Result = ({ results = [], onCardClick }) => {
   );
 };
 
-export default Result;
+export default AlbumList;
