@@ -3,13 +3,14 @@ import React from "react";
 
 import SongItem from "./SongItem";
 
-const SongsList = (props) => {
+const SongsList = ({ items }) => {
   return (
-    <ul className="">
-      {props.items.map((item) => (
+    <ul>
+      {items.map((item) => (
         <SongItem
           key={item.id}
-          albumId={item.id}
+          id={item.id}
+          albumId={item.albumId}
           name={item.name}
           duration={item.duration}
         />

@@ -1,17 +1,16 @@
 import React from "react";
 import classes from "./SongItem.module.css";
 
-const SongItem = (item) => {
+const SongItem = ({ id, name, duration }) => {
   return (
     <div className={classes.album_item}>
-      <div className={classes.number}>
-        <p>{item.albumId}</p>
-      </div>
+      <div className={classes.title} />
+      <div>{id}</div>
       <div className={classes.name}>
-        <p>{item.name}</p>
+        <p>{name}</p>
       </div>
       <div className={classes.duration}>
-        <p>{item.duration}</p>
+        <p>{duration}</p>
       </div>
     </div>
   );
