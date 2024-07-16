@@ -1,10 +1,10 @@
 import React from "react";
-// import classes from "AlbumCard.module.css";
-// import AlbumList from "./AlbumList";
+import classes from "./Album.module.css";
+// import SongsList from "./SongsList";
 
-const AlbumCard = ({ albumCard, onClick }) => {
+const Album = ({ albumCard, onClick }) => {
   return (
-    <div className="">
+    <div className={classes.album_card}>
       <button onClick={onClick}>Back</button>
       <img src={albumCard.image_url} />
       <h3>{albumCard.name}</h3>
@@ -12,10 +12,10 @@ const AlbumCard = ({ albumCard, onClick }) => {
       <p>{albumCard.createdAt}</p>
       <p>{albumCard.description}</p>
       {/* <div>
-        <AlbumList />
+        <SongsList />
       </div> */}
     </div>
   );
 };
 
-export default AlbumCard;
+export default Album;

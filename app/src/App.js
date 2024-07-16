@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Search from "./Component/AlbumCard/Search";
-import AlbumList from "./Component/AlbumCard/AlbumList";
+import Search from "./Component/AlbumList/Search";
+import AlbumList from "./Component/AlbumList/AlbumList";
 import Loader from "./Component/UI/Loader";
-import AlbumCard from "./Component/AlbumSongs/AlbumCard";
+import Album from "./Component/Album/Album";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -58,7 +58,7 @@ function App() {
   return (
     <div>
       {selectedCard ? (
-        <AlbumCard albumCard={selectedCard} onClick={handleBackClick} />
+        <Album albumCard={selectedCard} onClick={handleBackClick} />
       ) : (
         <div>
           <Search onSearch={handleSearch} />
