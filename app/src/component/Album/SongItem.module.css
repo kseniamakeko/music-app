@@ -1,6 +1,13 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
 .album_item {
   display: flex;
   align-items: center;
+  border-bottom: 0.5px solid #666;
+  margin-top: 1.5rem;
 }
 
 .albumId {
@@ -16,6 +23,14 @@
   font-size: 1em;
   color: #333;
   font-weight: 500;
+}
+.name p {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.name p {
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .duration {
