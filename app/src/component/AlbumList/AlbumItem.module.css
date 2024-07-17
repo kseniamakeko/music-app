@@ -12,6 +12,10 @@
   justify-content: flex-end;
 }
 
+.itemCard :hover {
+  cursor: pointer;
+}
+
 .itemCard img {
   width: 200px;
   height: auto;
