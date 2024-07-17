@@ -12,14 +12,21 @@ const Search = ({ onSearch }) => {
     onSearch(inputSearch);
   }, [inputSearch]);
 
+  const handleDeleteSearchInput = (inputSearch) => {
+    setInputSearch(null);
+  };
+
   return (
-    <div className={classes.search}>
-      <input
-        type="text"
-        value={inputSearch}
-        onChange={handleChangeInputSearch}
-        placeholder="Search for music..."
-      />
+    <div className={classes.search_wrapper}>
+      <div className={classes.search}>
+        <input
+          type="text"
+          value={inputSearch}
+          onChange={handleChangeInputSearch}
+          placeholder="Search for music..."
+        />
+        <button onClick={handleChangeInputSearch}>X</button>
+      </div>
     </div>
   );
 };
