@@ -1,8 +1,14 @@
+import { Routes, Route, Link } from "react-router-dom";
+
+import { AlbumList } from "./component/AlbumList/AlbumList";
+import { Album } from "./component/Album/Album";
+
 import React, { useEffect, useState } from "react";
 import Search from "./Component/AlbumList/Search";
 import AlbumList from "./Component/AlbumList/AlbumList";
 import Loader from "./Component/UI/Loader";
 import Album from "./Component/Album/Album";
+import { Router } from "express";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -69,6 +75,10 @@ function App() {
           )}
         </div>
       )}
+      <Routes>
+        <Route path="/" element={<AlbumList />} />
+        <Route path="/Album/id" element={<Album />} />
+      </Routes>
     </div>
   );
 }
