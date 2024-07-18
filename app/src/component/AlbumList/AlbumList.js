@@ -5,10 +5,11 @@ import AlbumItem from "./AlbumItem";
 
 const AlbumList = ({ results = [], onCardClick }) => {
   return (
-    <div className={classes.result}>
+    <div className={classes.results}>
       {results.length > 0 ? (
         results.map((card) => (
           <Link
+            className={classes.no_underline}
             key={card.id}
             to={`/album/${card.id}`}
             onClick={() => onCardClick(card)}
