@@ -1,14 +1,9 @@
-import { Routes, Route, Link } from "react-router-dom";
-
-import { AlbumList } from "./component/AlbumList/AlbumList";
-import { Album } from "./component/Album/Album";
-
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Search from "./Component/AlbumList/Search";
 import AlbumList from "./Component/AlbumList/AlbumList";
+import Search from "./Component/AlbumList/Search";
 import Loader from "./Component/UI/Loader";
 import Album from "./Component/Album/Album";
-import { Router } from "express";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -62,24 +57,41 @@ function App() {
   };
 
   return (
-    <div>
-      {selectedCard ? (
-        <Album albumCard={selectedCard} onClick={handleBackClick} />
-      ) : (
-        <div>
-          <Search onSearch={handleSearch} />
-          {loading ? (
-            <Loader />
-          ) : (
-            <AlbumList results={searchResults} onCardClick={handlerCardClick} />
-          )}
-        </div>
-      )}
-      <Routes>
-        <Route path="/" element={<AlbumList />} />
-        <Route path="/Album/id" element={<Album />} />
-      </Routes>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <Search onSearch={handleSearch} />
+                {loading ? (
+                  <Loader />
+                ) : (
+                  <AlbumList
+                    results={searchResults}
+                    onCardClick={handlerCardClick}
+                  />
+                )}
+              </div>
+            }
+          />
+          <Route
+            path="/album/:id"
+            element={
+              <Album albumCard={selectedCard} onClick={handleBackClick} />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
