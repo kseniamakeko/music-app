@@ -35,12 +35,11 @@ function App() {
       setSearchResults(cards);
     } else {
       const filteredResults = cards.filter((item) => {
-        const nameMatch = item.name
-          .toLowerCase()
-          .includes(inputSearch.toLowerCase());
-        const authorNameMatch = item.authorName
-          .toLowerCase()
-          .includes(inputSearch.toLowerCase());
+        const nameMatch =
+          item.name && item.name.toLowerCase().includes(inputSearch);
+        const authorNameMatch =
+          item.authorName &&
+          item.authorName.toLowerCase().includes(inputSearch);
 
         return nameMatch || authorNameMatch;
       });
@@ -59,13 +58,6 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-        </nav>
         <Routes>
           <Route
             path="/"

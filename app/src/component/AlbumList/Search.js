@@ -13,7 +13,7 @@ const Search = ({ onSearch }) => {
   }, [inputSearch]);
 
   const handleDeleteSearchInput = (inputSearch) => {
-    setInputSearch(null);
+    setInputSearch("");
   };
 
   return (
@@ -21,7 +21,7 @@ const Search = ({ onSearch }) => {
       <div className={classes.search}>
         <input
           type="text"
-          value={inputSearch}
+          value={inputSearch || ""}
           onChange={handleChangeInputSearch}
           placeholder="Search for music..."
         />
