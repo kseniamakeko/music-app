@@ -25,7 +25,7 @@ const Search = ({ onSearch }) => {
           onChange={handleChangeInputSearch}
           placeholder="Search for music..."
         />
-        <button onClick={handleChangeInputSearch}>X</button>
+        <button onClick={handleDeleteSearchInput}>X</button>
       </div>
     </div>
   );
