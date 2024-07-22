@@ -5,7 +5,7 @@ import Search from "./Component/AlbumList/Search";
 import Loader from "./Component/UI/Loader";
 import Album from "./Component/Album/Album";
 import Header from "./Component/Header/Header";
-// import { CreateAlbum } from "./Component/EditAlbum/CreateAlbum";
+import { CreateAlbum } from "./Component/EditAlbum/CreateAlbum";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -79,7 +79,9 @@ function App() {
               </div>
             }
           />
+          <Route exact path="/album/add" element={<CreateAlbum />} />
           <Route
+            exact
             path="/album/:id"
             element={
               <Album albumCard={selectedCard} onClick={handleBackClick} />
