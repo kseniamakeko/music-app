@@ -8,9 +8,10 @@ const Toggle = () => {
   };
   return (
     <>
-      <div className={classes.button_container}></div>
       <button
-        className={`button ${isAdmin ? "admin" : "consumer"}`}
+        className={`${classes.button} ${
+          isAdmin ? classes.admin : classes.consumer
+        }`}
         onClick={toggleHandler}
       >
         {isAdmin ? "Admin" : "Consumer"}

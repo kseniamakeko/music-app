@@ -2,11 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10vh;
+  height: 4hv;
 }
 
 .search {
   position: relative;
+  display: flex;
+  justify-content: center;
   width: 100%;
   max-width: 400px;
 }

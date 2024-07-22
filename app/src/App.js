@@ -4,6 +4,8 @@ import AlbumList from "./Component/AlbumList/AlbumList";
 import Search from "./Component/AlbumList/Search";
 import Loader from "./Component/UI/Loader";
 import Album from "./Component/Album/Album";
+import Header from "./Component/Header/Header";
+// import { CreateAlbum } from "./Component/EditAlbum/CreateAlbum";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -36,10 +38,11 @@ function App() {
     } else {
       const filteredResults = cards.filter((item) => {
         const nameMatch =
-          item.name && item.name.toLowerCase().includes(inputSearch);
+          item.name &&
+          item.name.toLowerCase().includes(inputSearch.toLowerCase());
         const authorNameMatch =
           item.authorName &&
-          item.authorName.toLowerCase().includes(inputSearch);
+          item.authorName.toLowerCase().includes(inputSearch.toLowerCase());
 
         return nameMatch || authorNameMatch;
       });
@@ -58,6 +61,7 @@ function App() {
   return (
     <Router>
       <div>
+        <Header />
         <Routes>
           <Route
             path="/"
