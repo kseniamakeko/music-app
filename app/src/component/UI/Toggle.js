@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import classes from "./Toggle.module.css";
 
-const Toggle = () => {
-  const [isAdmin, setIsAdmin] = useState(true);
+const Toggle = ({ isAdmin, setIsAdmin }) => {
   const toggleHandler = () => {
     setIsAdmin(!isAdmin);
   };

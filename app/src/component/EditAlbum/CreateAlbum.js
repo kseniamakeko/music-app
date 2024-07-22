@@ -1,16 +1,27 @@
-import { useParams } from "react-router-dom";
-import { Fragment } from "react";
-import Album from "./Album/Album";
+import React from "react";
 
 const CreateAlbum = () => {
-  const { id } = useParams();
   return (
-    <Fragment>
-      <Album>
-        {id}
-        <button>Create new album</button>
-      </Album>
-    </Fragment>
+    <>
+      <form>
+        <label>
+          Name
+          <input />
+        </label>
+        <label>
+          Author
+          <input />
+        </label>
+        <label>
+          Year
+          <input />
+        </label>
+        <label>
+          description
+          <textarea />
+        </label>
+      </form>
+    </>
   );
 };
 
