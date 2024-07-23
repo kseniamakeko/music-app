@@ -1,25 +1,31 @@
 import React from "react";
+import classes from "./CreateAlbum.module.css";
 
 const CreateAlbum = () => {
   return (
     <>
-      <form>
+      <form className={classes.from}>
         <label>
-          Name
-          <input />
+          name album
+          <input type="text" />
         </label>
         <label>
-          Author
-          <input />
+          author
+          <input type="text" />
         </label>
         <label>
-          Year
-          <input />
+          year
+          <input type="number" />
         </label>
         <label>
           description
           <textarea />
         </label>
+        <label>
+          image
+          <input type="file" />
+        </label>
+        <button>Create album</button>
       </form>
     </>
   );
