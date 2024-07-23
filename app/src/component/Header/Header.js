@@ -8,7 +8,11 @@ const Header = () => {
   return (
     <section className={classes.header}>
       <h1 className={classes.title}>MusApp</h1>
-      {isAdmin && <Link to="/album/add">Add New Album</Link>}
+      {isAdmin && (
+        <Link className={classes.btn_add_new} to="/album/add">
+          Add New Album
+        </Link>
+      )}
       <Toggle isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
     </section>
   );
