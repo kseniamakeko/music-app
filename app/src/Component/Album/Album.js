@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import classes from "./Album.module.css";
 import SongsList from "./SongsList";
@@ -34,6 +34,7 @@ const Album = ({ albumCard, onClick }) => {
         <h4>{albumCard?.authorName}</h4>
         <p>{new Date(albumCard?.createdAt).getFullYear()}</p>
         <p>{albumCard?.description}</p>
+        <Link to={`/album/${id}/edit`}>Edit Album</Link>
       </div>
       <div className={classes.album_right}>
         <div className={classes.album_right}>

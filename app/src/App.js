@@ -6,7 +6,7 @@ import Loader from "./Component/UI/Loader";
 import Album from "./Component/Album/Album";
 import Header from "./Component/Header/Header";
 import { CreateAlbum } from "./Component/EditAlbum/CreateAlbum";
-// import { EditAlbum } from "./Component/EditAlbum/EditAlbum";
+import { EditAlbum } from "./Component/EditAlbum/EditAlbum";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -81,7 +81,11 @@ function App() {
             }
           />
           <Route exact path="/album/add" element={<CreateAlbum />} />
-          {/* <Route exact path="/album/edit" element={<EditAlbum />} /> */}
+          <Route
+            exact
+            path="/album/:id/edit"
+            element={<EditAlbum albumCards={cards} />}
+          />
           <Route
             exact
             path="/album/:id"

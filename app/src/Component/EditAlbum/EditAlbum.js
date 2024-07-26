@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import EditAlbum from "./EditAlbum.module.css";
+import classes from "./EditAlbum.module.css";
 
-const EditAlbum = ({}) => {
+const EditAlbum = ({ albumCards }) => {
   const { id } = useParams();
-  for (let i = 0; i < Array.length; i++) {}
   const {
     register,
     formState: { errors, isValid },
@@ -15,7 +15,7 @@ const EditAlbum = ({}) => {
     mode: "onBlur"
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (data) => {
     try {
       const formattedDate = moment(data.createdAt).format(
         "YYYY-MM-DD HH:mm:ss"
@@ -38,6 +38,14 @@ const EditAlbum = ({}) => {
     }
     reset();
   };
+
+  useEffect(() => {
+    const albumCard = albumCards.find((card) => card.id === Number(id));
+    if (albumCard) {
+      albumCard.createdAt = moment(albumCard.createdAt).format("YYYY-MM-DD");
+    }
+    reset(albumCard);
+  }, [id, albumCards]);
 
   return (
     <>
@@ -100,22 +108,8 @@ const EditAlbum = ({}) => {
           {errors.description && <p>{errors.description.message}</p>}
         </div>
 
-        {/* <label htmlFor="file">
-      image
-      <input
-        type="file"
-        id="image_url"
-        {...register("file", {
-          required: "File is required!"
-        })}
-      />
-    </label>
-    <div className={classes.errors}>
-      {errors.image_url && <p>{errors.image_url.message}</p>}
-    </div> */}
-
         <button type="submit" disabled={!isValid}>
-          Create album
+          Save Changes
         </button>
       </form>
     </>
