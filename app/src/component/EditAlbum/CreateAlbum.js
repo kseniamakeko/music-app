@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 import classes from "./CreateAlbum.module.css";
 
@@ -12,10 +13,30 @@ const CreateAlbum = () => {
     mode: "onBlur"
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const formattedDate = moment(data.createdAt).format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
+      const res = await fetch("http://localhost:5000/albums", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ ...data, createdAt: formattedDate })
+      });
+      if (!res.ok) {
+        throw new Error("Failed to update album data");
+      }
+      const result = await res.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error updating album data:", error);
+    }
     reset();
   };
+
   return (
     <>
       <form className={classes.from} onSubmit={handleSubmit(onSubmit)}>
@@ -53,7 +74,7 @@ const CreateAlbum = () => {
           year
           <input
             id="createdAt"
-            type="year"
+            type="date"
             {...register("createdAt", {
               required: "Please, enter year release album",
               valueAsDate: true

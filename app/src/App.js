@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import AlbumList from "./Component/AlbumList/AlbumList";
 import Search from "./Component/AlbumList/Search";
