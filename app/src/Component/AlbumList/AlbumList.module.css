@@ -1,0 +1,11 @@
+.results {
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.no_underline {
+  text-decoration: none;
+  color: black;
+}

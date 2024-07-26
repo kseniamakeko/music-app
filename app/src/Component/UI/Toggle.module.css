@@ -1,0 +1,21 @@
+.button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.consumer {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.admin {
+  background-color: black;
+  color: white;
+}
