@@ -13,7 +13,8 @@ app.use(express.static("public"));
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  database: "music-app"
+  database: "music-app",
+  timezone: 'Z'
 });
 
 app.post("/albums", (req, res) => {
@@ -29,6 +30,30 @@ app.post("/albums", (req, res) => {
       }
       res.status(201).json({
         id: results.insertId,
+        name,
+        authorName,
+        createdAt,
+        description,
+        image_url
+      });
+    }
+  );
+});
+
+app.put("/albums/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, authorName, createdAt, description, image_url } = req.body;
+  const query =
+    "UPDATE Album SET name = ?, authorName = ?, createdAt = ?, description = ?, image_url = ? WHERE id = ?";
+  pool.query(
+    query,
+    [name, authorName, createdAt, description, image_url, id],
+    (error, results) => {
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+      res.status(200).json({
+        id,
         name,
         authorName,
         createdAt,

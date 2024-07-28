@@ -20,7 +20,7 @@ const EditAlbum = ({ albumCards }) => {
       const formattedDate = moment(data.createdAt).format(
         "YYYY-MM-DD HH:mm:ss"
       );
-      const res = await fetch("http://localhost:5000/albums", {
+      const res = await fetch(`http://localhost:5000/albums/${data.id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
@@ -31,12 +31,9 @@ const EditAlbum = ({ albumCards }) => {
       if (!res.ok) {
         throw new Error("Failed to update album data");
       }
-      const result = await res.json();
-      console.log(result);
     } catch (error) {
       console.error("Error updating album data:", error);
     }
-    reset();
   };
 
   useEffect(() => {
