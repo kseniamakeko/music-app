@@ -27,7 +27,7 @@ const Album = ({ albumCard, onClick }) => {
     <div className={classes.album_container}>
       <div className={classes.album_left}>
         <div className={classes.btn_container}>
-          <button onClick={() => navigate(-1)}>Back</button>
+          <button onClick={() => navigate("/")}>Back</button>
           <div className={classes.btns}>
             <Link className={classes.btn} to={`/album/${id}/edit`}>
               Edit Album

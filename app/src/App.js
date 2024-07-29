@@ -59,6 +59,24 @@ function App() {
     setSelectedCard(null);
   };
 
+  const handleAlbumCreated = (newAlbum) => {
+    setCards((prevAlbums) => [...prevAlbums, newAlbum]);
+    setSearchResults((prevResults) => [...prevResults, newAlbum]);
+  };
+
+  const handleUpdateAlbum = (updateAlbum) => {
+    setCards((prevAlbums) =>
+      prevAlbums.map((album) =>
+        album.id === updateAlbum.id ? updateAlbum : album
+      )
+    );
+    setSearchResults((prevResults) =>
+      prevResults.map((album) =>
+        album.id === updateAlbum.id ? updateAlbum : album
+      )
+    );
+  };
+
   return (
     <Router>
       <div>
@@ -80,11 +98,17 @@ function App() {
               </div>
             }
           />
-          <Route exact path="/album/add" element={<CreateAlbum />} />
+          <Route
+            exact
+            path="/album/add"
+            element={<CreateAlbum onAlbumCreated={handleAlbumCreated} />}
+          />
           <Route
             exact
             path="/album/:id/edit"
-            element={<EditAlbum albumCards={cards} />}
+            element={
+              <EditAlbum albumCards={cards} onUpdateAlbum={handleUpdateAlbum} />
+            }
           />
           <Route
             exact

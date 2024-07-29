@@ -4,7 +4,7 @@ import moment from "moment";
 import { useForm } from "react-hook-form";
 import classes from "./CreateAlbum.module.css";
 
-const CreateAlbum = () => {
+const CreateAlbum = ({ onAlbumCreated }) => {
   const {
     register,
     formState: { errors, isValid },
@@ -33,15 +33,13 @@ const CreateAlbum = () => {
         throw new Error("Failed to update album data");
       }
       const result = await res.json();
+      onAlbumCreated(data);
+      navigate("/");
       console.log(result);
     } catch (error) {
       console.error("Error updating album data:", error);
     }
     reset();
-  };
-
-  const handleRedirect = () => {
-    navigate("/");
   };
 
   return (

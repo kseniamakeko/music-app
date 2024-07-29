@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import classes from "./EditAlbum.module.css";
 
-const EditAlbum = ({ albumCards }) => {
+const EditAlbum = ({ albumCards, onUpdateAlbum }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors, isValid },
@@ -28,7 +29,10 @@ const EditAlbum = ({ albumCards }) => {
         },
         body: JSON.stringify({ ...data, createdAt: formattedDate })
       });
-      if (!res.ok) {
+      if (res.ok) {
+        onUpdateAlbum(data);
+        navigate(`/album/${id}`);
+      } else if (!res.ok) {
         throw new Error("Failed to update album data");
       }
     } catch (error) {
