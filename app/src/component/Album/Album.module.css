@@ -64,3 +64,47 @@
   font-size: 16px;
   color: #666;
 }
+
+.btn_container {
+  display: flex;
+  gap: 200px;
+}
+
+.btns {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #79a7f6;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #6097f5;
+}
+
+.btn_delete {
+  text-decoration: none;
+  background-color: #79a7f6;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn_delete:hover {
+  background-color: #6097f5;
+}

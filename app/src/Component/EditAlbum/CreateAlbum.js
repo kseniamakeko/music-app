@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 import classes from "./CreateAlbum.module.css";
@@ -12,6 +13,8 @@ const CreateAlbum = () => {
   } = useForm({
     mode: "onBlur"
   });
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -35,6 +38,10 @@ const CreateAlbum = () => {
       console.error("Error updating album data:", error);
     }
     reset();
+  };
+
+  const handleRedirect = () => {
+    navigate("/");
   };
 
   return (
@@ -97,20 +104,6 @@ const CreateAlbum = () => {
         <div className={classes.errors}>
           {errors.description && <p>{errors.description.message}</p>}
         </div>
-
-        {/* <label htmlFor="file">
-          image
-          <input
-            type="file"
-            id="image_url"
-            {...register("file", {
-              required: "File is required!"
-            })}
-          />
-        </label>
-        <div className={classes.errors}>
-          {errors.image_url && <p>{errors.image_url.message}</p>}
-        </div> */}
 
         <button type="submit" disabled={!isValid}>
           Create album

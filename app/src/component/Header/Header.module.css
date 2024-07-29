@@ -22,3 +22,9 @@
   border-radius: 4px;
   color: black;
 }
+
+.btn_add_new:hover {
+  background-color: rgb(63, 63, 63);
+  border: none;
+  color: #fff;
+}

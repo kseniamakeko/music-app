@@ -26,7 +26,17 @@ const Album = ({ albumCard, onClick }) => {
   return (
     <div className={classes.album_container}>
       <div className={classes.album_left}>
-        <button onClick={() => navigate(-1)}>Back</button>
+        <div className={classes.btn_container}>
+          <button onClick={() => navigate(-1)}>Back</button>
+          <div className={classes.btns}>
+            <Link className={classes.btn} to={`/album/${id}/edit`}>
+              Edit Album
+            </Link>
+            <Link className={classes.btn_delete} to={`album/${id}/delte`}>
+              Delete Album
+            </Link>
+          </div>
+        </div>
         {albumCard?.image_url && (
           <img src={`http://localhost:5000/${albumCard.image_url}`} />
         )}
@@ -34,7 +44,6 @@ const Album = ({ albumCard, onClick }) => {
         <h4>{albumCard?.authorName}</h4>
         <p>{new Date(albumCard?.createdAt).getFullYear()}</p>
         <p>{albumCard?.description}</p>
-        <Link to={`/album/${id}/edit`}>Edit Album</Link>
       </div>
       <div className={classes.album_right}>
         <div className={classes.album_right}>
