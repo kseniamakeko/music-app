@@ -55,6 +55,19 @@ function App() {
     setSearchResults((prevResults) => [...prevResults, newAlbum]);
   };
 
+  const handleAlbumUpdate = (updateAlbum) => {
+    setCards((prevAlbums) =>
+      prevAlbums.map((album) =>
+        album.id === updateAlbum.id ? updateAlbum : album
+      )
+    );
+    setSearchResults((prevResults) =>
+      prevResults.map((album) =>
+        album.id === updateAlbum.id ? updateAlbum : album
+      )
+    );
+  };
+
   return (
     <Router>
       <div>
@@ -77,7 +90,9 @@ function App() {
           <Route
             exact
             path="/album/:id/edit"
-            element={<EditAlbum albumCards={cards} />}
+            element={
+              <EditAlbum albumCards={cards} onUpdateAlbum={handleAlbumUpdate} />
+            }
           />
           <Route
             exact

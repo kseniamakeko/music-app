@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import classes from "./EditAlbum.module.css";
 
-const EditAlbum = ({ albumCards }) => {
+const EditAlbum = ({ albumCards, onUpdateAlbum }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -31,6 +31,7 @@ const EditAlbum = ({ albumCards }) => {
       });
       if (res.ok) {
         navigate(`/album/${id}`);
+        onUpdateAlbum(data);
       } else if (!res.ok) {
         throw new Error("Failed to update album data");
       }
