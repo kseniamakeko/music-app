@@ -12,7 +12,6 @@ function App() {
   const [cards, setCards] = useState([]);
   const [searchResults, setSearchResults] = useState(cards);
   const [loading, setLoading] = useState(true);
-  const [selectedCard, setSelectedCard] = useState(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -51,30 +50,9 @@ function App() {
     }
   };
 
-  const handlerCardClick = (albumCard) => {
-    setSelectedCard(albumCard);
-  };
-
-  const handleBackClick = () => {
-    setSelectedCard(null);
-  };
-
   const handleAlbumCreated = (newAlbum) => {
     setCards((prevAlbums) => [...prevAlbums, newAlbum]);
     setSearchResults((prevResults) => [...prevResults, newAlbum]);
-  };
-
-  const handleUpdateAlbum = (updateAlbum) => {
-    setCards((prevAlbums) =>
-      prevAlbums.map((album) =>
-        album.id === updateAlbum.id ? updateAlbum : album
-      )
-    );
-    setSearchResults((prevResults) =>
-      prevResults.map((album) =>
-        album.id === updateAlbum.id ? updateAlbum : album
-      )
-    );
   };
 
   return (
@@ -87,14 +65,7 @@ function App() {
             element={
               <div>
                 <Search onSearch={handleSearch} />
-                {loading ? (
-                  <Loader />
-                ) : (
-                  <AlbumList
-                    results={searchResults}
-                    onCardClick={handlerCardClick}
-                  />
-                )}
+                {loading ? <Loader /> : <AlbumList results={searchResults} />}
               </div>
             }
           />
@@ -106,16 +77,12 @@ function App() {
           <Route
             exact
             path="/album/:id/edit"
-            element={
-              <EditAlbum albumCards={cards} onUpdateAlbum={handleUpdateAlbum} />
-            }
+            element={<EditAlbum albumCards={cards} />}
           />
           <Route
             exact
             path="/album/:id"
-            element={
-              <Album albumCard={selectedCard} onClick={handleBackClick} />
-            }
+            element={<Album albumCards={cards} />}
           />
         </Routes>
       </div>

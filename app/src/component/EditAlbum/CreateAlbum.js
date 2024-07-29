@@ -5,16 +5,15 @@ import { useForm } from "react-hook-form";
 import classes from "./CreateAlbum.module.css";
 
 const CreateAlbum = ({ onAlbumCreated }) => {
+  const navigate = useNavigate();
+
   const {
     register,
     formState: { errors, isValid },
-    handleSubmit,
-    reset
+    handleSubmit
   } = useForm({
     mode: "onBlur"
   });
-
-  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -33,13 +32,11 @@ const CreateAlbum = ({ onAlbumCreated }) => {
         throw new Error("Failed to update album data");
       }
       const result = await res.json();
-      onAlbumCreated(data);
+      onAlbumCreated(result);
       navigate("/");
-      console.log(result);
     } catch (error) {
       console.error("Error updating album data:", error);
     }
-    reset();
   };
 
   return (

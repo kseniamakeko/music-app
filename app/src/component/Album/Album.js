@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import classes from "./Album.module.css";
 import SongsList from "./SongsList";
 
-const Album = ({ albumCard, onClick }) => {
+const Album = ({ albumCards }) => {
   const [songs, setSongs] = useState([]);
+  const [albumCard, setAlbumCard] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -23,6 +24,14 @@ const Album = ({ albumCard, onClick }) => {
     };
     fetchSongs();
   }, [id]);
+
+  useEffect(() => {
+    const card = albumCards.find((album) => album.id === Number(id));
+    if (card) {
+      setAlbumCard(card);
+    }
+  }, [id, albumCards]);
+
   return (
     <div className={classes.album_container}>
       <div className={classes.album_left}>
@@ -32,7 +41,7 @@ const Album = ({ albumCard, onClick }) => {
             <Link className={classes.btn} to={`/album/${id}/edit`}>
               Edit Album
             </Link>
-            <Link className={classes.btn_delete} to={`album/${id}/delte`}>
+            <Link className={classes.btn_delete} to={`album/${id}/delete`}>
               Delete Album
             </Link>
           </div>

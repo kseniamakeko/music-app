@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./AlbumList.module.css";
 import AlbumItem from "./AlbumItem";
 
-const AlbumList = ({ results = [], onCardClick }) => {
+const AlbumList = ({ results = [] }) => {
   return (
     <div className={classes.results}>
       {results.length > 0 ? (
@@ -12,7 +12,6 @@ const AlbumList = ({ results = [], onCardClick }) => {
             className={classes.no_underline}
             key={card.id}
             to={`/album/${card.id}`}
-            onClick={() => onCardClick(card)}
           >
             <AlbumItem
               image_url={card.image_url}
