@@ -7,6 +7,7 @@ import Album from "./Component/Album/Album";
 import Header from "./Component/Header/Header";
 import { CreateAlbum } from "./Component/EditAlbum/CreateAlbum";
 import { EditAlbum } from "./Component/EditAlbum/EditAlbum";
+import { DeleteAlbum } from "./Component/EditAlbum/DeleteAlbum";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -82,6 +83,7 @@ function App() {
               </div>
             }
           />
+
           <Route
             exact
             path="/album/add"
@@ -94,6 +96,8 @@ function App() {
               <EditAlbum albumCards={cards} onUpdateAlbum={handleAlbumUpdate} />
             }
           />
+          <Route exact path="/album/:id/delete" element={<DeleteAlbum />} />
+
           <Route
             exact
             path="/album/:id"

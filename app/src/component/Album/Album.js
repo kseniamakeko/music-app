@@ -41,7 +41,13 @@ const Album = ({ albumCards }) => {
             <Link className={classes.btn} to={`/album/${id}/edit`}>
               Edit Album
             </Link>
-            <Link className={classes.btn_delete} to={`album/${id}/delete`}>
+            <Link
+              className={classes.btn_delete}
+              to={{
+                pathname: `album/${id}/delete`,
+                state: { showPopup: true }
+              }}
+            >
               Delete Album
             </Link>
           </div>
