@@ -1,4 +1,4 @@
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import classes from "./Album.module.css";
 import SongsList from "./SongsList";
@@ -8,6 +8,9 @@ const Album = ({ albumCards }) => {
   const [albumCard, setAlbumCard] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location;
+  const showPopup = state?.showPopup || false;
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -33,39 +36,60 @@ const Album = ({ albumCards }) => {
   }, [id, albumCards]);
 
   return (
-    <div className={classes.album_container}>
-      <div className={classes.album_left}>
-        <div className={classes.btn_container}>
-          <button onClick={() => navigate("/")}>Back</button>
-          <div className={classes.btns}>
-            <Link className={classes.btn} to={`/album/${id}/edit`}>
-              Edit Album
-            </Link>
-            <Link
-              className={classes.btn_delete}
-              to={{
-                pathname: `album/${id}/delete`,
-                state: { showPopup: true }
-              }}
+    <Fragment>
+      {showPopup && (
+        <Popup>
+          <div className={classes.message}>
+            <span>{props.message}</span>
+          </div>
+          <div className={classes.actions}>
+            <button
+              type="submit"
+              className={classes.btn_yes}
+              onSubmit={onSubmit}
             >
-              Delete Album
-            </Link>
+              Yes
+            </button>
+            <button type="button" className={classes.btn_no}>
+              No
+            </button>
+          </div>
+        </Popup>
+      )}
+      <div className={classes.album_container}>
+        <div className={classes.album_left}>
+          <div className={classes.btn_container}>
+            <button onClick={() => navigate("/")}>Back</button>
+            <div className={classes.btns}>
+              <Link className={classes.btn} to={`/album/${id}/edit`}>
+                Edit Album
+              </Link>
+              <Link
+                className={classes.btn_delete}
+                to={{
+                  pathname: `delete`,
+                  state: { showPopup: true }
+                }}
+              >
+                Delete Album
+              </Link>
+            </div>
+          </div>
+          {albumCard?.image_url && (
+            <img src={`http://localhost:5000/${albumCard.image_url}`} />
+          )}
+          <h3>{albumCard?.name}</h3>
+          <h4>{albumCard?.authorName}</h4>
+          <p>{new Date(albumCard?.createdAt).getFullYear()}</p>
+          <p>{albumCard?.description}</p>
+        </div>
+        <div className={classes.album_right}>
+          <div className={classes.album_right}>
+            <SongsList className={classes.songs_list} items={songs} />
           </div>
         </div>
-        {albumCard?.image_url && (
-          <img src={`http://localhost:5000/${albumCard.image_url}`} />
-        )}
-        <h3>{albumCard?.name}</h3>
-        <h4>{albumCard?.authorName}</h4>
-        <p>{new Date(albumCard?.createdAt).getFullYear()}</p>
-        <p>{albumCard?.description}</p>
       </div>
-      <div className={classes.album_right}>
-        <div className={classes.album_right}>
-          <SongsList className={classes.songs_list} items={songs} />
-        </div>
-      </div>
-    </div>
+    </Fragment>
   );
 };
 

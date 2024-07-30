@@ -97,7 +97,6 @@ function App() {
             }
           />
           <Route exact path="/album/:id/delete" element={<DeleteAlbum />} />
-
           <Route
             exact
             path="/album/:id"
