@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import AlbumList from "./Component/AlbumList/AlbumList";
 import Search from "./Component/AlbumList/Search";
 import Loader from "./Component/UI/Loader";
@@ -7,7 +7,6 @@ import Album from "./Component/Album/Album";
 import Header from "./Component/Header/Header";
 import { CreateAlbum } from "./Component/EditAlbum/CreateAlbum";
 import { EditAlbum } from "./Component/EditAlbum/EditAlbum";
-import { DeleteAlbum } from "./Component/EditAlbum/DeleteAlbum";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -70,41 +69,34 @@ function App() {
   };
 
   return (
-    <Router>
-      <div>
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
-                <Search onSearch={handleSearch} />
-                {loading ? <Loader /> : <AlbumList results={searchResults} />}
-              </div>
-            }
-          />
+    <div>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <Search onSearch={handleSearch} />
+              {loading ? <Loader /> : <AlbumList results={searchResults} />}
+            </div>
+          }
+        />
 
-          <Route
-            exact
-            path="/album/add"
-            element={<CreateAlbum onAlbumCreated={handleAlbumCreated} />}
-          />
-          <Route
-            exact
-            path="/album/:id/edit"
-            element={
-              <EditAlbum albumCards={cards} onUpdateAlbum={handleAlbumUpdate} />
-            }
-          />
-          <Route exact path="/album/:id/delete" element={<DeleteAlbum />} />
-          <Route
-            exact
-            path="/album/:id"
-            element={<Album albumCards={cards} />}
-          />
-        </Routes>
-      </div>
-    </Router>
+        <Route
+          exact
+          path="/album/add"
+          element={<CreateAlbum onAlbumCreated={handleAlbumCreated} />}
+        />
+        <Route
+          exact
+          path="/album/:id/edit"
+          element={
+            <EditAlbum albumCards={cards} onUpdateAlbum={handleAlbumUpdate} />
+          }
+        />
+        <Route exact path="/album/:id" element={<Album albumCards={cards} />} />
+      </Routes>
+    </div>
   );
 }
 

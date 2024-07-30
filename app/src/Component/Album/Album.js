@@ -1,16 +1,15 @@
-import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import classes from "./Album.module.css";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import React, { useEffect, useState, Fragment } from "react";
 import SongsList from "./SongsList";
+import Popup from "../EditAlbum/PopupDelete";
+import classes from "./Album.module.css";
 
 const Album = ({ albumCards }) => {
   const [songs, setSongs] = useState([]);
   const [albumCard, setAlbumCard] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const state = location;
-  const showPopup = state?.showPopup || false;
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -35,27 +34,17 @@ const Album = ({ albumCards }) => {
     }
   }, [id, albumCards]);
 
+  const showPopupHandler = () => {
+    setShowPopup(true);
+  };
+
+  const hidePopUpHandler = () => {
+    setShowPopup(false);
+  };
+
   return (
     <Fragment>
-      {showPopup && (
-        <Popup>
-          <div className={classes.message}>
-            <span>{props.message}</span>
-          </div>
-          <div className={classes.actions}>
-            <button
-              type="submit"
-              className={classes.btn_yes}
-              onSubmit={onSubmit}
-            >
-              Yes
-            </button>
-            <button type="button" className={classes.btn_no}>
-              No
-            </button>
-          </div>
-        </Popup>
-      )}
+      {showPopup && <Popup onHidePopup={hidePopUpHandler} />}
       <div className={classes.album_container}>
         <div className={classes.album_left}>
           <div className={classes.btn_container}>
@@ -66,10 +55,8 @@ const Album = ({ albumCards }) => {
               </Link>
               <Link
                 className={classes.btn_delete}
-                to={{
-                  pathname: `delete`,
-                  state: { showPopup: true }
-                }}
+                to={`delete`}
+                onShowPopup={showPopupHandler}
               >
                 Delete Album
               </Link>

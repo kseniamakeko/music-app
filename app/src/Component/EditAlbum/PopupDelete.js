@@ -1,25 +1,11 @@
-import { Fragment } from "react";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from "react-dom";
-import classes from "./Popup.module.css";
-
-const Backdrop = () => {
-  return <div className={classes.backdrop}></div>;
-};
-
-const ModalOverlay = (props) => {
-  return (
-    <div className={classes.modal}>
-      <div className={classes.content}>{props.children}</div>
-    </div>
-  );
-};
-
-const portalElement = document.getElementById("overlays");
+import Modal from "../UI/Modal";
+import moment from "moment";
+import classes from "./PopupDelete.module.css";
 
 const Popup = (props) => {
   const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     try {
       const formattedDate = moment(data.createdAt).format(
@@ -43,13 +29,25 @@ const Popup = (props) => {
     }
   };
   return (
-    <Fragment>
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
-      {ReactDOM.createPortal(
-        <ModalOverlay>{props.children}</ModalOverlay>,
-        portalElement
-      )}
-    </Fragment>
+    <>
+      <Modal>
+        <div className={classes.message}>
+          <span>Are you sure to delete?</span>
+        </div>
+        <div className={classes.actions}>
+          <button type="submit" className={classes.btn_yes} onSubmit={onSubmit}>
+            Yes
+          </button>
+          <button
+            type="button"
+            className={classes.btn_no}
+            onClick={props.onHidePopup}
+          >
+            Cancel
+          </button>
+        </div>
+      </Modal>
+    </>
   );
 };
 
