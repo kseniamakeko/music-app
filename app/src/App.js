@@ -71,8 +71,6 @@ function App() {
   const handleDeleteAlbum = (id) => {
     const updateCards = cards.filter((card) => card.id !== id);
     setCards(updateCards);
-    console.log("delete");
-    console.log(id);
   };
 
   return (
