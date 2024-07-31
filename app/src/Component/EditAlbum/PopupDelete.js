@@ -28,23 +28,29 @@ const Popup = (props) => {
     }
   };
   return (
-    <>
-      <div className={classes.message}>
-        <span>Are you sure to delete?</span>
+    <div className={classes.backdrop} onClick={props.onHidePopup}>
+      <div className={classes.container}>
+        <div className={classes.message}>
+          <span>Are you sure you want to delete?</span>
+        </div>
+        <div className={classes.actions}>
+          <button
+            type="submit"
+            className={classes.btn_yes}
+            onClick={() => onSubmit(props.albumCard)}
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            className={classes.btn_no}
+            onClick={props.onHidePopup}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
-      <div className={classes.actions}>
-        <button type="submit" className={classes.btn_yes} onSubmit={onSubmit}>
-          Yes
-        </button>
-        <button
-          type="button"
-          className={classes.btn_no}
-          onClick={props.onHidePopup}
-        >
-          Cancel
-        </button>
-      </div>
-    </>
+    </div>
   );
 };
 
