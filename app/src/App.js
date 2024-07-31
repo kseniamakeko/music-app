@@ -68,6 +68,13 @@ function App() {
     );
   };
 
+  const handleDeleteAlbum = (id) => {
+    const updateCards = cards.filter((card) => card.id !== id);
+    setCards(updateCards);
+    console.log("delete");
+    console.log(id);
+  };
+
   return (
     <Fragment>
       <Header />
@@ -93,7 +100,13 @@ function App() {
             <EditAlbum albumCards={cards} onUpdateAlbum={handleAlbumUpdate} />
           }
         />
-        <Route exact path="/album/:id" element={<Album albumCards={cards} />} />
+        <Route
+          exact
+          path="/album/:id"
+          element={
+            <Album albumCards={cards} onDeleteAlbum={handleDeleteAlbum} />
+          }
+        />
       </Routes>
     </Fragment>
   );

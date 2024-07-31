@@ -10,6 +10,7 @@ const Popup = (props) => {
         method: "DELETE"
       });
       if (res.ok) {
+        props.onDeleteAlbum(id);
         navigate("/");
       } else if (!res.ok) {
         throw new Error("Failed to delete album data");

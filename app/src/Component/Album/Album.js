@@ -4,7 +4,7 @@ import SongsList from "./SongsList";
 import Popup from "../EditAlbum/PopupDelete";
 import classes from "./Album.module.css";
 
-const Album = ({ albumCards }) => {
+const Album = ({ albumCards, onDeleteAlbum }) => {
   const [songs, setSongs] = useState([]);
   const [albumCard, setAlbumCard] = useState(null);
   const { id } = useParams();
@@ -45,7 +45,11 @@ const Album = ({ albumCards }) => {
   return (
     <Fragment>
       {showPopup && albumCard && (
-        <Popup id={albumCard.id} onHidePopup={hidePopUpHandler} />
+        <Popup
+          id={albumCard.id}
+          onHidePopup={hidePopUpHandler}
+          onDeleteAlbum={onDeleteAlbum}
+        />
       )}
       <div className={classes.album_container}>
         <div className={classes.album_left}>
