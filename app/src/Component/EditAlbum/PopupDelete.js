@@ -1,22 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import classes from "./PopupDelete.module.css";
 
 const Popup = (props) => {
   const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (id) => {
     try {
-      const formattedDate = moment(data.createdAt).format(
-        "YYYY-MM-DD HH:mm:ss"
-      );
-      const res = await fetch(`http://localhost:5000/albums/${data.id}`, {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ ...data, createdAt: formattedDate })
+      const res = await fetch(`http://localhost:5000/albums/${id}`, {
+        method: "DELETE"
       });
       if (res.ok) {
         navigate("/");
@@ -37,7 +28,7 @@ const Popup = (props) => {
           <button
             type="submit"
             className={classes.btn_yes}
-            onClick={() => onSubmit(props.albumCard)}
+            onClick={() => onSubmit(props.id)}
           >
             Yes
           </button>

@@ -45,7 +45,7 @@ const Album = ({ albumCards }) => {
   return (
     <Fragment>
       {showPopup && albumCard && (
-        <Popup albumCard={albumCard} onHidePopup={hidePopUpHandler} />
+        <Popup id={albumCard.id} onHidePopup={hidePopUpHandler} />
       )}
       <div className={classes.album_container}>
         <div className={classes.album_left}>
