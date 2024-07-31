@@ -10,6 +10,7 @@ const Album = ({ albumCards }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  console.log(showPopup);
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -44,7 +45,8 @@ const Album = ({ albumCards }) => {
 
   return (
     <Fragment>
-      {showPopup && <Popup onHidePopup={hidePopUpHandler} />}
+      {/* {showPopup && <Popup onHidePopup={hidePopUpHandler} />} */}
+      {showPopup && <p>Pop up</p>}
       <div className={classes.album_container}>
         <div className={classes.album_left}>
           <div className={classes.btn_container}>
@@ -53,13 +55,15 @@ const Album = ({ albumCards }) => {
               <Link className={classes.btn} to={`/album/${id}/edit`}>
                 Edit Album
               </Link>
-              <Link
+              {/* <Link
                 className={classes.btn_delete}
-                to={`delete`}
+                to={`/album/${id}/modal`}
+                state={{ backgroundLocation: location }}
                 onShowPopup={showPopupHandler}
               >
                 Delete Album
-              </Link>
+              </Link> */}
+              <button onClick={showPopupHandler}>Delete</button>
             </div>
           </div>
           {albumCard?.image_url && (

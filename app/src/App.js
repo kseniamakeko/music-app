@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import AlbumList from "./Component/AlbumList/AlbumList";
 import Search from "./Component/AlbumList/Search";
@@ -69,7 +69,7 @@ function App() {
   };
 
   return (
-    <div>
+    <Fragment>
       <Header />
       <Routes>
         <Route
@@ -81,7 +81,6 @@ function App() {
             </div>
           }
         />
-
         <Route
           exact
           path="/album/add"
@@ -96,7 +95,7 @@ function App() {
         />
         <Route exact path="/album/:id" element={<Album albumCards={cards} />} />
       </Routes>
-    </div>
+    </Fragment>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Modal from "../UI/Modal";
 import moment from "moment";
 import classes from "./PopupDelete.module.css";
 
@@ -30,23 +29,21 @@ const Popup = (props) => {
   };
   return (
     <>
-      <Modal>
-        <div className={classes.message}>
-          <span>Are you sure to delete?</span>
-        </div>
-        <div className={classes.actions}>
-          <button type="submit" className={classes.btn_yes} onSubmit={onSubmit}>
-            Yes
-          </button>
-          <button
-            type="button"
-            className={classes.btn_no}
-            onClick={props.onHidePopup}
-          >
-            Cancel
-          </button>
-        </div>
-      </Modal>
+      <div className={classes.message}>
+        <span>Are you sure to delete?</span>
+      </div>
+      <div className={classes.actions}>
+        <button type="submit" className={classes.btn_yes} onSubmit={onSubmit}>
+          Yes
+        </button>
+        <button
+          type="button"
+          className={classes.btn_no}
+          onClick={props.onHidePopup}
+        >
+          Cancel
+        </button>
+      </div>
     </>
   );
 };
